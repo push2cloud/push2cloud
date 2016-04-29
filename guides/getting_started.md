@@ -69,7 +69,7 @@ p2c compile -e ../manifests/deployment.json
 Finally, we are ready to deploy the example application. Simply start the execution of a workflow:
 
 ```
-node_modules/.bin/p2c exec ./node_modules/push2cloud-cf-workflows/blueGreen.js
+p2c exec ./node_modules/push2cloud-cf-workflows/blueGreen.js
 ```
 
 You should now have two applications and a service running in your space:
