@@ -1,0 +1,17 @@
+{
+  "plugins": {
+    "prepare": [
+      "push2cloud-compiler-git-no-archive",
+      "push2cloud-compiler-cf-target-env",
+      "push2cloud-compiler-git-ref-env"
+    ],
+    "compile": [
+      "push2cloud-compiler-cf-app-connections",
+      "push2cloud-compiler-cf-app-versioning"
+    ],
+    "buildWorkspace": [
+      "push2cloud-compiler-git-no-archive",
+      "push2cloud-compiler-workspace-resolver"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "push2cloud-example",
+  "description": "release manifest for push2cloud example",
+  "version": "1.0.0",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/push2cloud/push2cloud.git",
+    "referenceValue": "master",
+    "postClone": "cd example/apps/host && npm install && npm run build"
+  },
+  "apps": {
+    "push2cloud-example-host": {
+      "path": "example/apps/host"
+    },
+    "push2cloud-example-api": {
+      "path": "example/apps/api"
+    }
+  }
+}

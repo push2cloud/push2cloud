@@ -1,0 +1,34 @@
+{
+  "name": "push2cloud-example-api",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "scripts": {
+    "check": "npm run lint",
+    "clean": "rimraf coverage",
+    "lint": "eslint --ext=.js,.jsx js/ test/ *.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "5.x",
+    "npm": "3.x"
+  },
+  "deployment": {
+    "serviceBinding": [
+      "todo-db"
+    ]
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cfenv": "^1.0.3",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "redis": "^2.5.3",
+    "viewmodel": "^1.5.12"
+  },
+  "devDependencies": {
+    "eslint": "^2.5.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "rimraf": "^2.5.2"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "push2cloud-example",
+  "version": "1.0.0",
+  "description": "deployment manifest for push2cloud example",
+  "target": {
+    "type": "cloudfoundry",
+    "api": "https://api.lyra-836.appcloud.swisscom.com",
+    "space": "${SPACE}",
+    "org": "${ORG}",
+    "delay": 500,
+    "maxRetries": 60
+  },
+  "release": {
+    "name": "push2cloud-example",
+    "source": {
+      "type": "git",
+      "url": "https://github.com/push2cloud/push2cloud.git",
+      "referenceValue": "master"
+    },
+    "manifest": "example/manifests/release.json"
+  },
+  "secureAppConnections": true,
+  "domains": {
+    "public": "scapp.io",
+    "internal": "scapp.io"
+  },
+  "serviceMapping": {
+    "*-db" : {
+      "type": "redis",
+      "plan": "small"
+    }
+  },
+  "applicationDefaults": {
+    "memory": "512M",
+    "disk": "512M",
+    "instances": 1,
+    "startTimeout": 600,
+    "stageTimeout": 600,
+    "gracePeriod": 20,
+    "buildpack": "https://github.com/cloudfoundry/nodejs-buildpack.git",
+    "env" : {
+      "SYSTEM_VERSION": "${SYSTEM_VERSION}"
+    }
+  },
+  "apps": {
+    "push2cloud-example-host": {
+      "routes": {
+        "public": [
+          "push2cloud-example-host-${space}"
+        ]
+      }
+    },
+    "push2cloud-example-api": {
+      "routes": {
+        "internal": [
+          "${appname}-${space}"
+        ]
+      }
+    }
+  }
+}

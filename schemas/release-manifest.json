@@ -1,0 +1,132 @@
+{
+  "title": "release manifest",
+  "description": "In the release manifest, a release manager can specify the exact composition of applications and their versions that are known to work together.",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://github.com/push2cloud/push2cloud/schemas/release-manifest.json",
+  "type": "object",
+  "example": {
+    "name": "push2cloud-example",
+    "description": "release manifest for push2cloud example",
+    "version": "1.0.0",
+    "source": {
+      "type": "git",
+      "url": "https://github.com/push2cloud/push2cloud.git",
+      "referenceValue": "master"
+    },
+    "apps": {
+      "push2cloud-example-host": {
+        "path": "example/apps/host"
+      },
+      "push2cloud-example-api": {
+        "path": "example/apps/api"
+      }
+    }
+  },
+  "properties": {
+    "name": {
+      "id": "name",
+      "type": "string",
+      "description": "Identifier for the release. Can stay the same for multiple releases."
+    },
+    "description": {
+      "id": "description",
+      "type": "string",
+      "description": "Description of the release."
+    },
+    "version": {
+      "id": "version",
+      "type": "string",
+      "description": "The version of your release. Use [semver](http://semver.org/). This value is exposed as SYSTEM_VERSION in all your applications."
+    },
+    "source": {
+      "id": "source",
+      "type": "object",
+      "description": "Default source definition for all apps in this release. Can be overwritten by each app.",
+      "properties": {
+        "type": {
+          "id": "type",
+          "type": "string",
+          "description": "Type of the source.",
+          "default": "git"
+        },
+        "url": {
+          "id": "url",
+          "type": "string",
+          "description": "URL for the source. For git use https://"
+        },
+        "referenceValue": {
+          "id": "referenceValue",
+          "type": "string",
+          "description": "The specific reference to retrieve from the source. For git, this can be a commit-id, tag (tags/${tag}) or branch"
+        },
+        "postClone": {
+          "id": "postClone",
+          "type": "string",
+          "description": "Script to execute after the source has been cloned."
+        }
+      }
+    },
+    "globalServices": {
+      "id": "globalServices",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "apps": {
+      "id": "apps",
+      "description": "The applications of this release",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "id": "path",
+            "description": "Path where the application is located within the source",
+            "type": "string",
+            "default": ""
+          },
+          "manifest": {
+            "id": "manifest",
+            "description": "Name of the application manifest",
+            "type": "string",
+            "default": "package.json"
+          },
+          "source": {
+            "id": "source",
+            "type": "object",
+            "description": "Source definition for this app.",
+            "properties": {
+              "type": {
+                "id": "type",
+                "type": "string",
+                "description": "Type of the source.",
+                "default": "git"
+              },
+              "url": {
+                "id": "url",
+                "type": "string",
+                "description": "URL for the source. For git use https://"
+              },
+              "referenceValue": {
+                "id": "referenceValue",
+                "type": "string",
+                "description": "The specific reference to retrieve from the source. For git, this can be a commit-id, tag (tags/${tag}) or branch"
+              },
+              "postClone": {
+                "id": "postClone",
+                "type": "string",
+                "description": "Script to execute after the source has been cloned."
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "version",
+    "apps"
+  ]
+}

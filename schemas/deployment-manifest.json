@@ -1,0 +1,281 @@
+{
+	"title": "deployment manifest",
+	"description": "In the deployment manifest, the deployment target specific information is defined, such as domain and service mappings.",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://github.com/push2cloud/push2cloud/schemas/deployment-manifest.json",
+	"type": "object",
+	"example": {
+		"name": "push2cloud-example",
+    "version": "1.0.0",
+		"description": "deployment manifest for push2cloud example",
+		"target": {
+			"type": "cloudfoundry",
+			"api": "https://api.lyra-836.appcloud.swisscom.com",
+			"space": "${SPACE}",
+	    "org": "${ORG}",
+			"delay": 500,
+			"maxRetries": 60
+		},
+		"release": {
+			"name": "push2cloud-example",
+			"source": {
+				"type": "git",
+				"url": "https://github.com/push2cloud/push2cloud.git",
+				"referenceValue": "master"
+			},
+			"manifest": "example/manifests/release.json"
+		},
+		"secureAppConnections": true,
+		"domains": {
+			"public": "scapp.io",
+			"internal": "scapp.io"
+		},
+		"serviceMapping": {
+			"*-db": {
+				"type": "redis",
+				"plan": "small"
+			}
+		},
+		"applicationDefaults": {
+			"memory": "512M",
+			"disk": "512M",
+			"instances": 1,
+			"startTimeout": 100,
+			"stageTimeout": 200,
+			"gracePeriod": 20,
+			"buildpack": "https://github.com/cloudfoundry/nodejs-buildpack.git",
+			"env": {
+				"SYSTEM_VERSION": "${SYSTEM_VERSION}"
+			}
+		},
+		"apps": {
+			"push2cloud-example-host": {
+				"routes": {
+					"public": [
+						"push2cloud-example-host-${space}"
+					]
+				}
+			},
+			"push2cloud-example-api": {
+				"routes": {
+					"internal": [
+						"${appname}-${space}"
+					]
+				}
+			}
+		}
+	},
+	"properties": {
+		"name": {
+			"id": "name",
+			"type": "string",
+			"description": "Identifier for the deployment. Can stay the same for multiple deployment."
+		},
+		"description": {
+			"id": "description",
+			"type": "string",
+			"description": "Description of the deployment."
+		},
+		"version": {
+			"id": "version",
+			"type": "string",
+			"description": "The version of your deployment. Use [semver](http://semver.org/)."
+		},
+		"target": {
+			"id": "target",
+			"type": "object",
+			"description": "target desc",
+			"properties": {
+				"type": {
+					"id": "type",
+					"type": "string",
+					"description": "target type desc",
+					"default": "cloudfoundry"
+				},
+				"api": {
+					"id": "api",
+					"type": "string",
+					"description": "target api desc"
+				},
+				"space": {
+					"id": "space",
+					"type": "string",
+					"description": "target space desc"
+				},
+				"org": {
+					"id": "org",
+					"type": "string",
+					"description": "target org desc"
+				},
+				"delay": {
+					"id": "delay",
+					"type": "number",
+					"description": "target delay desc",
+					"default": 500
+				},
+				"maxRetries": {
+					"id": "maxRetries",
+					"type": "number",
+					"description": "target maxRetries desc",
+					"default": 60
+				}
+			}
+		},
+		"release": {
+			"id": "release",
+			"type": "object",
+			"properties": {
+				"name": {
+					"id": "name",
+					"type": "string",
+					"description": "release name desc"
+				},
+				"manifest": {
+					"id": "manifest",
+					"type": "string",
+					"description": "release manifest desc"
+				},
+				"source": {
+					"id": "source",
+					"type": "object",
+					"description": "source definition for the release.",
+					"properties": {
+						"type": {
+							"id": "type",
+							"type": "string",
+							"description": "Type of the source.",
+							"default": "git"
+						},
+						"url": {
+							"id": "url",
+							"type": "string",
+							"description": "URL for the source. For git use https://"
+						},
+						"referenceValue": {
+							"id": "referenceValue",
+							"type": "string",
+							"description": "The specific reference to retrieve from the source. For git, this can be a commit-id, tag (tags/${tag}) or branch"
+						},
+						"postClone": {
+							"id": "postClone",
+							"type": "string",
+							"description": "Script to execute after the source has been cloned."
+						}
+					}
+				}
+			}
+		},
+		"secureAppConnections": {
+			"id": "secureAppConnections",
+			"type": "boolean",
+			"description": "secureAppConnections desc"
+		},
+		"domains": {
+			"id": "domains",
+			"type": "object",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"serviceMapping": {
+			"id": "serviceMapping",
+			"type": "object",
+			"additionalProperties": {
+				"id": "additionalProperties",
+				"type": "object",
+				"properties": {
+					"type": {
+						"id": "type",
+						"type": "string"
+					},
+					"plan": {
+						"id": "plan",
+						"type": "string"
+					}
+				}
+			}
+		},
+		"applicationDefaults": {
+			"id": "applicationDefaults",
+			"type": "object",
+			"properties": {
+				"memory": {
+					"id": "memory",
+					"description": "the amount of memory the app requires, e.g.: 128M, 1G",
+					"type": "string",
+					"pattern": "^[0-9]*[MG]$",
+					"default": "256M"
+				},
+				"disk": {
+					"id": "disk",
+					"type": "string",
+					"description": "the amount of disk the app requires, e.g.: 128M, 1G",
+					"pattern": "^[0-9]*[MG]$",
+					"default": "256M"
+				},
+				"instances": {
+					"id": "instances",
+					"description": "the base amount of instances",
+					"type": "integer",
+					"minimum": 1,
+					"default": 1
+				},
+				"startTimeout": {
+					"id": "startTimeout",
+					"description": "how long the app can take to start before it is considered an error",
+					"type": "integer",
+					"minimum": 0
+				},
+				"stageTimeout": {
+					"id": "stageTimeout",
+					"description": "how long the app can take to stage before it is considered an error",
+					"type": "integer",
+					"minimum": 0,
+					"default": 300
+				},
+				"gracePeriod": {
+					"id": "gracePeriod",
+					"description": "how long the app has to run without crashing to be considered successfully started",
+					"type": "integer",
+					"minimum": 0,
+					"default": 40
+				},
+				"buildpack": {
+					"id": "buildpack",
+					"description": "buildbpack to build the application",
+					"type": "string"
+				},
+				"env": {
+					"id": "env",
+					"description": "environment variables to set/substitue for this app",
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"apps": {
+			"id": "apps",
+			"type": "object",
+			"additionalProperties": {
+				"type": "object",
+				"properties": {
+					"routes": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "array",
+							"items": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"required": [
+    "name",
+    "version",
+    "target",
+    "release"
+	]
+}
