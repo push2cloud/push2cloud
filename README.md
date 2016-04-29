@@ -14,6 +14,9 @@ git clone https://github.com/push2cloud/push2cloud.git
 cd push2cloud/example/deployer
 npm install
 
+# install the cli
+npm install -g push2cloud-cli
+
 # set your CF target (api, space, org)
 vi ../manifests/deployment.json
 
@@ -22,10 +25,10 @@ export CF_USER=${YOUR_USER}
 export CF_PWD=${YOUR_PASSWORD}
 
 # compile
-node_modules/push2cloud-cli/cli.js compile -e ../manifests/deployment.json
+p2c compile -e ../manifests/deployment.json
 
 # deploy
-node_modules/push2cloud-cli/cli.js exec ./node_modules/push2cloud-cf-workflows/simple.js
+p2c exec ./node_modules/push2cloud-cf-workflows/simple.js
 ```
 
 Longer and commented version available [here](guides/getting_started.md). Further guides available [here](guides/guide_list.md).
