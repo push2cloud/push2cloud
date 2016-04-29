@@ -30,6 +30,11 @@ node_modules/push2cloud-cli/cli.js exec ./node_modules/push2cloud-cf-workflows/s
 
 Longer and commented version available [here](guides/getting_started.md). Further guides available [here](guides/guide_list.md).
 
+
+## Demo
+![Push2Cloud in action](docs/gfx/blue_green.gif)
+
+
 ## Contribute
 To report bugs or request features, submit issues here on GitHub, push2cloud/push2cloud/issues. If you're contributing code, make pull requests to the appropriate repositories (see the [repo overview](docs/repositories.md)). If you're contributing something substantial, you should first contact developers.
 
