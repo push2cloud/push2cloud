@@ -21,7 +21,7 @@ npm install
 Next, we you need to adopt the deployment manifest for your CloudFoundry target. Make sure to use an empty space so your existing applications are not impacted. Open the file in an editor of your choice.
 ``` 
 vi ../manifests/deployment.json
-``` 
+```
 Adopt the following values:
 
 ```js
