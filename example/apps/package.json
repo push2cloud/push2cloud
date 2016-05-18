@@ -8,7 +8,7 @@
     "startHost": "cd host && npm start"
   },
   "engines": {
-    "node": "5.x",
+    "node": "6.x",
     "npm": "3.x"
   },
   "dependencies": {},

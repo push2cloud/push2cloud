@@ -15,7 +15,7 @@
     "test": "NODE_ENV=test mocha --recursive --compilers=js:babel-register --require=./test/helpers/jsdom.js"
   },
   "engines": {
-    "node": "5.x",
+    "node": "6.x",
     "npm": "3.x"
   },
   "deployment": {
