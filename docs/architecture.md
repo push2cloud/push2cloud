@@ -159,7 +159,7 @@ The [deployment configuration](deployment_configuration.md) is the output of the
 			"name": "push2cloud-example-host-1.0.0",
 			"env": {
 				"SYSTEM_VERSION": "1.0.0",
-				"push2cloud_EXAMPLE_API_HOST": "https://push2cloud-example-api-iot-cf-test.scapp.io"
+				"PUSH2CLOUD_EXAMPLE_API_HOST": "https://push2cloud-example-api-iot-cf-test.scapp.io"
 			}
 		},
     ...
