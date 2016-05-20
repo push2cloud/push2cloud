@@ -37,6 +37,7 @@ Longer and commented version available [here](guides/getting_started.md). Furthe
 ## Demo
 This quick demo shows you the initial deployent of the demo app and a blue-green deployment after a few changes.
 ![Push2Cloud in action](docs/gfx/blue_green.gif)
+
 longer and slower video [here](https://www.youtube.com/watch?v=-4CHDhGYhAc)
 
 ## Contribute
