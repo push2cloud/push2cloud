@@ -37,6 +37,15 @@ Options:
   --settings          Path to JSON config file                         [default: "./push2cloud-config.json"]
 ```
 
+# environment variables
+```
+
+The following global environment variables are available
+
+variables:
+  DEBUG                                                                [string] "*" shows all debug messages
+```
+
 # configuration
 All configuration takes place in the [push2cloud-config.json](https://github.com/push2cloud/push2cloud/blob/master/example/deployer/push2cloud-config.json), e.g.:
 
