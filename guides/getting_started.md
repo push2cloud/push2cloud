@@ -32,7 +32,11 @@ Adopt the following values:
     "space": "${SPACE}",
     "org": "${ORG}",
     ...
-  }
+  },
+  "domains": {
+    "public": "${PUBLIC_DOMAIN}",
+    "internal": "${INTERNAL_DOMAIN}"
+  },
   "serviceMapping": {
     "*-db" : {
       "type": "${REDIS_TYPE}",

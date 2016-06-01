@@ -17,7 +17,7 @@ npm install
 # install the cli
 npm install -g push2cloud-cli
 
-# set your CF target (api, space, org)
+# set your CF target (api, space, org), adopt serviceMappings & domains
 vi ../manifests/deployment.json
 
 # set your CF credentials
