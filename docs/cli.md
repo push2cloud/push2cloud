@@ -21,9 +21,10 @@ Options:
 p2c compile [options]
 
 Options:
-  -h, --help, --help        Show help                                  [boolean]
-  -e, --deploymentManifest  path to the deploymentManifest             [default: "./deploymentManifest.json"]
-  --settings                Path to JSON config file                   [default: "./push2cloud-config.json"]
+  -h, --help, --help        Show help                                        [boolean]
+  -e, --deploymentManifest  path to the deploymentManifest                   [default: "./deploymentManifest.json"]
+  -c, --clearWorkspace      clears the __workspace directory before building [default: false]
+  --settings                Path to JSON config file                         [default: "./push2cloud-config.json"]
 ```
 
 
