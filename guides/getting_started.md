@@ -60,7 +60,7 @@ export CF_PWD=${YOUR_PASSWORD}
 Before we start the deployment, we need to run the compiler. This creates the required deployment configuration and prepares the local workspace for packaging.
 
 ```bash
-node_modules/.bin/p2c compile -e ../manifests/deployment.json
+node_modules/.bin/p2c compile -e ../manifests/deployment.json -c
 ```
 
 Alternativly, you can install the p2c globally
