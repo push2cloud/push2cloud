@@ -25,7 +25,7 @@ export CF_USER=${YOUR_USER}
 export CF_PWD=${YOUR_PASSWORD}
 
 # compile
-p2c compile -e ../manifests/deployment.json
+p2c compile -e ../manifests/deployment.json -c
 
 # deploy
 p2c exec ./node_modules/push2cloud-cf-workflows/simple.js
