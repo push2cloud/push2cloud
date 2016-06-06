@@ -30,7 +30,13 @@ In the application manifest a developer defines the application, its dependencie
     },
     "serviceBinding": [
       "todo-db"
-    ]
+    ],
+    "path": "build/libs/java-1.0.jar",
+    "scripts": {
+      "package": [
+        "gradle jar"
+      ]
+    }
   }
 }
 
@@ -104,6 +110,14 @@ Default: `40`
 
 buildbpack to build the application
 
+### `path` (string)
+
+which folder/file should be used for deployment. Useful for java applications. Similar to [path in CloudFoundry manifests](http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#path).
+
+### `appBits` (string)
+
+Alias for path. Will be overwritten by path.
+
 ### `env` (object)
 
 environment variables to set/substitue for this app
@@ -113,6 +127,18 @@ Further properties are of type `string`
 ### `serviceBinding` (array)
 
 names of services this app needs connections to
+
+The object is an array with all elements of the type `string`.
+
+### `scripts` (object)
+
+scripts that are used in workflows during the apps deployment
+
+Properties of the `scripts` object:
+
+#### `prepare` (array)
+
+scripts that run during the [packageApp helper](https://github.com/push2cloud/workflow-utils/blob/master/packageApp.js).
 
 The object is an array with all elements of the type `string`.
 

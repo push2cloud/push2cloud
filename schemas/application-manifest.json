@@ -28,7 +28,13 @@
       },
       "serviceBinding": [
         "todo-db"
-      ]
+      ],
+      "path": "build/libs/java-1.0.jar",
+      "scripts": {
+        "package": [
+          "gradle jar"
+        ]
+      }
     }
   },
   "properties": {
@@ -93,6 +99,16 @@
           "description": "buildbpack to build the application",
           "type": "string"
         },
+        "path": {
+          "id": "path",
+          "description": "which folder/file should be used for deployment. Useful for java applications. Similar to [path in CloudFoundry manifests](http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#path).",
+          "type": "string"
+        },
+        "appBits": {
+          "id": "appBits",
+          "description": "Alias for path. Will be overwritten by path.",
+          "type": "string"
+        },
         "env": {
           "id": "env",
           "description": "environment variables to set/substitue for this app",
@@ -107,6 +123,23 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "scripts": {
+          "id": "scripts",
+          "description": "scripts that are used in workflows during the apps deployment",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "prepare": {
+                "description": "scripts that run during the [packageApp helper](https://github.com/push2cloud/workflow-utils/blob/master/packageApp.js).",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "appConnections": {
