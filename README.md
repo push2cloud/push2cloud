@@ -1,4 +1,4 @@
-# push2cloud
+# ![push2cloud](https://push2.cloud/assets/images/logo.svg)
 Deploy complex applications in style!
 
 ## Overview
